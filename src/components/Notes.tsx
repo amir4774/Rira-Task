@@ -13,7 +13,7 @@ const Notes = () => {
 
       <Grid container spacing={4}>
         {notes.map((note, index) => (
-          <Note key={index} note={note} numberOfNote={index + 1} />
+          <Note key={note.id} note={note} numberOfNote={index + 1} />
         ))}
       </Grid>
     </Box>

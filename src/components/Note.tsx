@@ -18,7 +18,7 @@ const Note = ({ note, numberOfNote }: NotePropsType) => {
               Note {numberOfNote}
             </Typography>
 
-            <NoteButtonGroup />
+            <NoteButtonGroup note={note} />
           </Stack>
 
           <Typography>{note.text}</Typography>

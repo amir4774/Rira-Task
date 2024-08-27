@@ -1,4 +1,5 @@
 import { useContext, createContext, ReactNode, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { DateType, GlobalContextType, NotesType } from "./Interfaces";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
@@ -11,8 +12,16 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [notes, setNotes] = useState<NotesType[]>(initialNotes);
 
   const updateNotes = (newNotes: NotesType) => {
-    setNotes([...notes, newNotes]);
+    setNotes([...notes, { ...newNotes, id: uuidv4() }]);
     localStorage.setItem("notes", JSON.stringify([...notes, newNotes]));
+  };
+
+  const deleteNote = (id: string) => {
+    setNotes(notes.filter((note) => note.id !== id));
+    localStorage.setItem(
+      "notes",
+      JSON.stringify(notes.filter((note) => note.id !== id))
+    );
   };
 
   const convertDate = (date: DateType) => {
@@ -22,7 +31,9 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <GlobalContext.Provider value={{ notes, updateNotes, convertDate }}>
+    <GlobalContext.Provider
+      value={{ notes, updateNotes, convertDate, deleteNote }}
+    >
       {children}
     </GlobalContext.Provider>
   );
