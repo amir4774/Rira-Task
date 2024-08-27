@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 
-const useFormValue = (initialValue: string | number) => {
+const useFormValue = (initialValue: string) => {
   const [value, setValue] = useState(initialValue);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
