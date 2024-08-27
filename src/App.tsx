@@ -1,11 +1,17 @@
-
+import { Box, CssBaseline } from "@mui/material";
+import Form from "./components/Form";
+import "./index.css";
 
 const App = () => {
   return (
-    <div>
-      Hello World
-    </div>
-  )
-}
+    <>
+      <CssBaseline />
 
-export default App
+      <Box width={{ xs: "95%", md: "90%" }} mx="auto">
+        <Form />
+      </Box>
+    </>
+  );
+};
+
+export default App;
