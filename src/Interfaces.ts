@@ -15,3 +15,13 @@ export interface GlobalContextType {
   updateNotes: (newNotes: NotesType) => void;
   convertDate: (date: DateType) => string;
 }
+
+export interface NotePropsType {
+  note: NotesType;
+  numberOfNote: number;
+}
+
+export interface NoteTimesPropsType {
+  submittedDate: string;
+  deadLine: string;
+}

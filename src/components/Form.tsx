@@ -2,10 +2,9 @@ import { FormEvent } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import useFormValue from "../hooks/useFormValue";
 import { useGlobalContext } from "../GlobalContext";
-import { GlobalContextType } from "../Interfaces";
 
 const Form = () => {
-  const { updateNotes, convertDate } = useGlobalContext() as GlobalContextType;
+  const { updateNotes, convertDate } = useGlobalContext();
   const textValue = useFormValue("");
   const dateValue = useFormValue("");
 
@@ -29,10 +28,14 @@ const Form = () => {
     };
 
     updateNotes(newNote);
+
+    // Reset the form
+    textValue.onChange({ target: { value: "" } });
+    dateValue.onChange({ target: { value: "" } });
   };
 
   return (
-    <Box width={{ xs: "95%", md: "60%" }} mx="auto" pt={3}>
+    <Box width={{ xs: "100%", md: "60%" }} mx="auto" pt={3}>
       <form onSubmit={handleSubmit}>
         <TextField
           {...textValue}

@@ -3,11 +3,16 @@ import { DateType, GlobalContextType, NotesType } from "./Interfaces";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
+const initialNotes: NotesType[] = JSON.parse(
+  localStorage.getItem("notes") || "[]"
+) as NotesType[];
+
 const GlobalProvider = ({ children }: { children: ReactNode }) => {
-  const [notes, setNotes] = useState<NotesType[]>([]);
+  const [notes, setNotes] = useState<NotesType[]>(initialNotes);
 
   const updateNotes = (newNotes: NotesType) => {
     setNotes([...notes, newNotes]);
+    localStorage.setItem("notes", JSON.stringify([...notes, newNotes]));
   };
 
   const convertDate = (date: DateType) => {
@@ -25,4 +30,5 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
 export default GlobalProvider;
 
-export const useGlobalContext = () => useContext(GlobalContext);
+export const useGlobalContext = () =>
+  useContext(GlobalContext) as GlobalContextType;
