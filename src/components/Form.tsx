@@ -4,7 +4,7 @@ import useFormValue from "../hooks/useFormValue";
 import { useGlobalContext } from "../GlobalContext";
 
 const Form = () => {
-  const { updateNotes, convertDate } = useGlobalContext();
+  const { addNotes, convertDate } = useGlobalContext();
   const textValue = useFormValue("");
   const dateValue = useFormValue("");
 
@@ -27,7 +27,7 @@ const Form = () => {
       deadLine: dateValue.value,
     };
 
-    updateNotes(newNote);
+    addNotes(newNote);
 
     // Reset the form
     textValue.onChange({ target: { value: "" } });

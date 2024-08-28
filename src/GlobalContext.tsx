@@ -11,9 +11,17 @@ const initialNotes: NotesType[] = JSON.parse(
 const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [notes, setNotes] = useState<NotesType[]>(initialNotes);
 
-  const updateNotes = (newNotes: NotesType) => {
+  const addNotes = (newNotes: Omit<NotesType, "id">) => {
     setNotes([...notes, { ...newNotes, id: uuidv4() }]);
     localStorage.setItem("notes", JSON.stringify([...notes, newNotes]));
+  };
+
+  const updateNote = (id: string, updatedNote: NotesType) => {
+    setNotes(notes.map((note) => (note.id === id ? updatedNote : note)));
+    localStorage.setItem(
+      "notes",
+      JSON.stringify(notes.map((note) => (note.id === id ? updatedNote : note)))
+    );
   };
 
   const deleteNote = (id: string) => {
@@ -32,7 +40,7 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ notes, updateNotes, convertDate, deleteNote }}
+      value={{ notes, addNotes, convertDate, deleteNote, updateNote }}
     >
       {children}
     </GlobalContext.Provider>

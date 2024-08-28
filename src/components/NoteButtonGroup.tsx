@@ -1,12 +1,17 @@
 import { Delete, Edit } from "@mui/icons-material";
 import { Button, ButtonGroup, Tooltip } from "@mui/material";
-import DeleteNote from "./DeleteNote";
+import EditNote from "./EditNote";
 import useBoolean from "../hooks/useBoolean";
 import { NoteButtonGroupPropsType } from "../Interfaces";
+import { useGlobalContext } from "../GlobalContext";
 
 const NoteButtonGroup = ({ note }: NoteButtonGroupPropsType) => {
+  const { deleteNote } = useGlobalContext();
   const openEdit = useBoolean();
-  const openDelete = useBoolean();
+
+  const handleDelete = () => {
+    deleteNote(note.id);
+  };
 
   return (
     <>
@@ -21,16 +26,16 @@ const NoteButtonGroup = ({ note }: NoteButtonGroupPropsType) => {
         </Tooltip>
 
         <Tooltip title="Delete">
-          <Button color="error" onClick={openDelete.onClick}>
+          <Button color="error" onClick={handleDelete}>
             <Delete />
           </Button>
         </Tooltip>
       </ButtonGroup>
 
-      <DeleteNote
-        open={openDelete.value}
-        onClose={openDelete.onClick}
-        noteId={note.id}
+      <EditNote
+        open={openEdit.value}
+        onClose={openEdit.onClick}
+        note={note}
       />
     </>
   );

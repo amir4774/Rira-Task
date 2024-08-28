@@ -13,8 +13,9 @@ export interface DateType {
 
 export interface GlobalContextType {
   notes: NotesType[];
-  updateNotes: (newNotes: NotesType) => void;
+  addNotes: (newNotes: Omit<NotesType, "id">) => void;
   convertDate: (date: DateType) => string;
+  updateNote: (id: string, updatedNote: NotesType) => void;
   deleteNote: (id: string) => void;
 }
 
@@ -31,8 +32,8 @@ export interface NoteTimesPropsType {
   deadLine: string;
 }
 
-export interface DeleteNotePropsType {
+export interface EditNotePropsType {
   open: boolean;
   onClose: () => void;
-  noteId: string;
+  note: NotesType;
 }
