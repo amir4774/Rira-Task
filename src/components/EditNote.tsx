@@ -34,15 +34,21 @@ const EditNote = ({ open, onClose, note }: EditNotePropsType) => {
     onClose();
   };
 
+  const handleClose = () => {
+    onClose();
+    textValue.onChange({ target: { value: note.text } });
+    dateValue.onChange({ target: { value: note.deadLine } });
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth>
+    <Dialog open={open} onClose={handleClose} fullWidth>
       <DialogContent>
         <DialogContentText>
           <FormBody textValue={textValue} dateValue={dateValue} />
         </DialogContentText>
 
         <DialogActions>
-          <Button onClick={onClose} variant="outlined" fullWidth>
+          <Button onClick={handleClose} variant="outlined" fullWidth>
             Cancel
           </Button>
           <Button

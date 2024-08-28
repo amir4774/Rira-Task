@@ -25,16 +25,7 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const calculateDate = (submittedDate: string, deadLine: string) => {
-    if (
-      submittedDate
-        .split("-")
-        .map((item) => Number(item))
-        .join("") <=
-      deadLine
-        .split("-")
-        .map((item) => Number(item))
-        .join("")
-    ) {
+    if (submittedDate.split("-").join("") <= deadLine.split("-").join("")) {
       return true;
     }
     return false;
