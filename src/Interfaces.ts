@@ -16,7 +16,7 @@ export interface DateType {
 export interface GlobalContextType {
   notes: NotesType[];
   addNotes: (newNotes: Omit<NotesType, "id">) => void;
-  convertDate: (date: DateType) => string;
+  calculateDate: (submittedDate: string, deadLine: string) => boolean;
   updateNote: (id: string, updatedNote: NotesType) => void;
   deleteNote: (id: string) => void;
 }

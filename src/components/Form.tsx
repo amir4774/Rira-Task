@@ -3,11 +3,18 @@ import { Box, Button } from "@mui/material";
 import useFormValue from "../hooks/useFormValue";
 import { useGlobalContext } from "../GlobalContext";
 import FormBody from "./FormBody";
+import { DateType } from "../Interfaces";
 
 const Form = () => {
-  const { addNotes, convertDate } = useGlobalContext();
+  const { addNotes, calculateDate } = useGlobalContext();
   const textValue = useFormValue("");
   const dateValue = useFormValue("");
+
+  const convertDate = (date: DateType) => {
+    return `${date.year}-${String(date.month).padStart(2, "0")}-${String(
+      date.day
+    ).padStart(2, "0")}`;
+  };
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -27,6 +34,11 @@ const Form = () => {
       submittedDate: convertDate({ year, month, day }),
       deadLine: dateValue.value,
     };
+
+    if (!calculateDate(newNote.submittedDate, newNote.deadLine)) {
+      alert("Deadline cannot be before submitted date");
+      return;
+    }
 
     addNotes(newNote);
 
