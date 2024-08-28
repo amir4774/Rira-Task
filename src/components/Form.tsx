@@ -1,7 +1,8 @@
 import { FormEvent } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import useFormValue from "../hooks/useFormValue";
 import { useGlobalContext } from "../GlobalContext";
+import FormBody from "./FormBody";
 
 const Form = () => {
   const { addNotes, convertDate } = useGlobalContext();
@@ -37,15 +38,7 @@ const Form = () => {
   return (
     <Box width={{ xs: "100%", md: "60%" }} mx="auto" pt={3}>
       <form onSubmit={handleSubmit}>
-        <TextField
-          {...textValue}
-          placeholder="Enter Note..."
-          rows={5}
-          fullWidth
-          multiline
-        />
-
-        <input type="date" className="date-input" {...dateValue} />
+        <FormBody textValue={textValue} dateValue={dateValue} />
 
         <Button
           type="submit"

@@ -4,11 +4,11 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  TextField,
 } from "@mui/material";
 import { useGlobalContext } from "../GlobalContext";
 import { EditNotePropsType } from "../Interfaces";
 import useFormValue from "../hooks/useFormValue";
+import FormBody from "./FormBody";
 
 const EditNote = ({ open, onClose, note }: EditNotePropsType) => {
   const { updateNote } = useGlobalContext();
@@ -33,20 +33,7 @@ const EditNote = ({ open, onClose, note }: EditNotePropsType) => {
     <Dialog open={open} onClose={onClose} fullWidth>
       <DialogContent>
         <DialogContentText>
-          <TextField
-            {...textValue}
-            placeholder="Enter Note..."
-            rows={5}
-            fullWidth
-            multiline
-          />
-
-          <input
-            {...dateValue}
-            type="date"
-            className="date-input"
-            defaultValue={note.submittedDate}
-          />
+          <FormBody textValue={textValue} dateValue={dateValue} />
         </DialogContentText>
 
         <DialogActions>

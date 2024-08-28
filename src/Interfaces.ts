@@ -1,3 +1,5 @@
+import useFormValue from "./hooks/useFormValue";
+
 export interface NotesType {
   text: string;
   submittedDate: string;
@@ -36,4 +38,9 @@ export interface EditNotePropsType {
   open: boolean;
   onClose: () => void;
   note: NotesType;
+}
+
+export interface FormBodyPropsType {
+  textValue: ReturnType<typeof useFormValue>;
+  dateValue: ReturnType<typeof useFormValue>;
 }
