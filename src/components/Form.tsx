@@ -3,18 +3,13 @@ import { Box, Button } from "@mui/material";
 import useFormValue from "../hooks/useFormValue";
 import { useGlobalContext } from "../GlobalContext";
 import FormBody from "./FormBody";
-import { DateType } from "../Interfaces";
+import useToday from "../hooks/useToday";
 
 const Form = () => {
   const { addNotes, calculateDate } = useGlobalContext();
   const textValue = useFormValue("");
   const dateValue = useFormValue("");
-
-  const convertDate = (date: DateType) => {
-    return `${date.year}-${String(date.month).padStart(2, "0")}-${String(
-      date.day
-    ).padStart(2, "0")}`;
-  };
+  const today = useToday();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -24,14 +19,9 @@ const Form = () => {
       return;
     }
 
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-
     const newNote = {
       text: textValue.value,
-      submittedDate: convertDate({ year, month, day }),
+      submittedDate: today,
       deadLine: dateValue.value,
     };
 

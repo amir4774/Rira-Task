@@ -1,12 +1,13 @@
 import { Card, CardContent, Stack, Typography } from "@mui/material";
 import NoteTimes from "./NoteTimes";
-import { NotePropsType } from "../Interfaces";
 import NoteButtonGroup from "./NoteButtonGroup";
+import useToday from "../hooks/useToday";
+import { NotePropsType } from "../Interfaces";
 
 const Note = ({ note, numberOfNote }: NotePropsType) => {
-  const noteBg = () => {
-    const today = note.submittedDate.split("-").join("");
+  const today = useToday().split("-").join("");
 
+  const noteBg = () => {
     const deadLine = note.deadLine.split("-").join("");
 
     // If today and deadLine are equal

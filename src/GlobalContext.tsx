@@ -1,6 +1,6 @@
 import { useContext, createContext, ReactNode, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { GlobalContextType, NotesType } from "./Interfaces";
+import { DateType, GlobalContextType, NotesType } from "./Interfaces";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
@@ -36,6 +36,12 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
     return false;
   };
 
+  const convertDate = (date: DateType) => {
+    return `${date.year}-${String(date.month).padStart(2, "0")}-${String(
+      date.day
+    ).padStart(2, "0")}`;
+  };
+
   const deleteNote = (id: string) => {
     setNotes(notes.filter((note) => note.id !== id));
     localStorage.setItem(
@@ -53,6 +59,7 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
         deleteNote,
         updateNote,
         calculateDate,
+        convertDate,
       }}
     >
       {children}
