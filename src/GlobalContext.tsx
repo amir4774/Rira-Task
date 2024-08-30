@@ -12,16 +12,15 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [notes, setNotes] = useState<NotesType[]>(initialNotes);
 
   const addNotes = (newNote: Omit<NotesType, "id">) => {
-    setNotes([...notes, { ...newNote, id: uuidv4() }]);
-    localStorage.setItem("notes", JSON.stringify([...notes, newNote]));
+    const newNotes = [...notes, { ...newNote, id: uuidv4() }];
+    setNotes(newNotes);
+    localStorage.setItem("notes", JSON.stringify(newNotes));
   };
 
   const updateNote = (id: string, updatedNote: NotesType) => {
-    setNotes(notes.map((note) => (note.id === id ? updatedNote : note)));
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(notes.map((note) => (note.id === id ? updatedNote : note)))
-    );
+    const newNotes = notes.map((note) => (note.id === id ? updatedNote : note));
+    setNotes(newNotes);
+    localStorage.setItem("notes", JSON.stringify(newNotes));
   };
 
   const updateDraggedNote = (newNotes: NotesType[]) => {
@@ -43,11 +42,9 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const deleteNote = (id: string) => {
-    setNotes(notes.filter((note) => note.id !== id));
-    localStorage.setItem(
-      "notes",
-      JSON.stringify(notes.filter((note) => note.id !== id))
-    );
+    const newNotes = notes.filter((note) => note.id !== id);
+    setNotes(newNotes);
+    localStorage.setItem("notes", JSON.stringify(newNotes));
   };
 
   return (
