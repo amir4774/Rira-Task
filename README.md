@@ -6,6 +6,7 @@ This project is a simple Notes Management App built using React and Material-UI 
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Custom Hooks](#custom-hooks)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -15,7 +16,8 @@ This project is a simple Notes Management App built using React and Material-UI 
 - **Add Notes:** Create new notes with a text, submitted date and deadline.
 - **Edit Notes:** Update existing notes.
 - **Delete Notes:** Remove notes you no longer need.
-- **Local Storage:** All notes are stored locally, so they persist even after the browser is closed.
+- **Draggable Notes:** Rearrange your notes by dragging and dropping them.
+- **Local Storage:** All notes are stored locally, so they persist even after the browser is closed. 
 
 ## Technologies Used
 
@@ -23,6 +25,11 @@ This project is a simple Notes Management App built using React and Material-UI 
 - **Material-UI (MUI):** React components for faster and easier web development.
 - **uuid:** A library to generate unique IDs for each note.
 - **Local Storage:** Web storage for persisting notes data in the browser.
+
+## Custom Hooks
+- **useToday:** A custom hook that calculates the current date using the `Date` object and returns it.
+- **useFormValues:** A custom hook that creates a `value` and `onChange` event handler for form inputs, simplifying the management of form state.
+- **useBoolean:** A custom hook that returns a boolean value and an `onClick` event handler to toggle the boolean value.
 
 ## Getting Started
 
