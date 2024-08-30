@@ -7,6 +7,7 @@ This project is a simple Notes Management App built using React and Material-UI 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Custom Hooks](#custom-hooks)
+- [Global Context](#global-context)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -30,6 +31,29 @@ This project is a simple Notes Management App built using React and Material-UI 
 - **useToday:** A custom hook that calculates the current date using the `Date` object and returns it.
 - **useFormValues:** A custom hook that creates a `value` and `onChange` event handler for form inputs, simplifying the management of form state.
 - **useBoolean:** A custom hook that returns a boolean value and an `onClick` event handler to toggle the boolean value.
+
+## Global Context
+
+This project also includes a global context for managing notes. It provides functionality to add, update, delete, and manage notes, along with utilities for date handling. The context persists notes in the browser's `localStorage`.
+
+### API
+
+- **useGlobalContext:** A custom hook that provides access to the global context.
+
+- **GlobalProvider:** A component that wraps your application to provide the global context.
+
+```tsx
+import React from "react";
+import GlobalProvider from "./path/to/GlobalProvider";
+
+const App = () => (
+  <GlobalProvider>
+    <YourAppComponents />
+  </GlobalProvider>
+);
+
+export default App;
+```
 
 ## Getting Started
 
